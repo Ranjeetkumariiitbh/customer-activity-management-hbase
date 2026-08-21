@@ -1,0 +1,43 @@
+﻿# HBase Commands Used in Customer Activity Management Project
+
+# 1. Create table
+create 'customer_activity', 'profile', 'activity'
+
+# 2. List tables
+list
+
+# 3. Scan all records
+scan 'customer_activity'
+
+# 4. Scan specific row range
+scan 'customer_activity', {STARTROW => 'C102', STOPROW => 'C106'}
+
+# 5. Get complete row
+get 'customer_activity', 'C101'
+
+# 6. Get a specific column
+get 'customer_activity', 'C101', {COLUMN => 'profile:name'}
+
+# 7. Get another specific column
+get 'customer_activity', 'C101', {COLUMN => 'activity:type'}
+
+# 8. Filter records by activity type
+scan 'customer_activity', {FILTER => "SingleColumnValueFilter('activity', 'type', =, 'binary:Purchase')"}
+
+# 9. Insert/update a value
+put 'customer_activity', 'C103', 'activity:type', 'Purchase'
+
+# 10. Delete a specific column
+delete 'customer_activity', 'C104', 'profile:city'
+
+# 11. Count rows
+count 'customer_activity'
+
+# 12. Describe table
+describe 'customer_activity'
+
+# 13. Disable table
+disable 'customer_activity'
+
+# 14. Enable table
+enable 'customer_activity'
